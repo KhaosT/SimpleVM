@@ -14,10 +14,6 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Spacer()
-            }
-            
             Text("vmlinuz: \(viewModel.kernelURL?.lastPathComponent ?? "(Drag to here)")")
                 .padding([.top, .bottom])
                 .onDrop(of: [.fileURL], isTargeted: nil) { itemProviders -> Bool in
@@ -45,6 +41,7 @@ struct ContentView: View {
                 if viewModel.state == nil {
                     Button("Start") {
                         viewModel.start()
+                        showConsole()
                     }
                     .disabled(!viewModel.isReady)
                 } else {
@@ -53,7 +50,11 @@ struct ContentView: View {
                     }
                 }
                 
+                Spacer()
                 if let stateDescription = viewModel.stateDescription {
+                    Button("Console") {
+                        showConsole()
+                    }
                     Spacer()
                     Text("State: \(stateDescription)")
                 }
@@ -61,7 +62,11 @@ struct ContentView: View {
             
         }
         .padding()
-        .frame(width: 300)
+        .frame(width: 400)
+    }
+    
+    private func showConsole() {
+        viewModel.showConsole()
     }
     
     enum DropItemType {

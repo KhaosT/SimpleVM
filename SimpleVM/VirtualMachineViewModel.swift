@@ -5,7 +5,7 @@
 //  Created by Khaos Tian on 7/26/20.
 //
 
-import Foundation
+import Cocoa
 import Combine
 import Virtualization
 
@@ -19,6 +19,19 @@ class VirtualMachineViewModel: NSObject, ObservableObject, VZVirtualMachineDeleg
     
     @Published var state: VZVirtualMachine.State?
     
+    private lazy var consoleWindow: NSWindow = {
+        let viewController = ConsoleViewController()
+        viewController.configure(with: readPipe, writePipe: writePipe)
+        return NSWindow(contentViewController: viewController)
+    }()
+    
+    private lazy var consoleWindowController: NSWindowController = {
+        let windowController = NSWindowController(window: consoleWindow)
+        return windowController
+    }()
+    
+    private let readPipe = Pipe()
+    private let writePipe = Pipe()
     private var cancellables: Set<AnyCancellable> = []
     
     var isReady: Bool {
@@ -66,8 +79,8 @@ class VirtualMachineViewModel: NSObject, ObservableObject, VZVirtualMachineDeleg
         let serial = VZVirtioConsoleDeviceConfiguration()
         
         serial.attachment = VZFileHandleSerialPortAttachment(
-            fileHandleForReading: .standardInput,
-            fileHandleForWriting: .standardOutput
+            fileHandleForReading: writePipe.fileHandleForReading,
+            fileHandleForWriting: readPipe.fileHandleForWriting
         )
 
         let entropy = VZVirtioEntropyDeviceConfiguration()
@@ -147,5 +160,11 @@ class VirtualMachineViewModel: NSObject, ObservableObject, VZVirtualMachineDeleg
     
     func virtualMachine(_ virtualMachine: VZVirtualMachine, didStopWithError error: Error) {
         NSLog("Stopped with error: \(error)")
+    }
+    
+    func showConsole() {
+        consoleWindow.setContentSize(NSSize(width: 400, height: 300))
+        consoleWindow.title = "Console"
+        consoleWindowController.showWindow(nil)
     }
 }

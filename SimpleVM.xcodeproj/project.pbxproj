@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		CC69034524CE88B700273851 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC69034424CE88B700273851 /* Assets.xcassets */; };
 		CC69034824CE88B700273851 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC69034724CE88B700273851 /* Preview Assets.xcassets */; };
 		CC69035124CE88CA00273851 /* VirtualMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC69035024CE88CA00273851 /* VirtualMachineViewModel.swift */; };
+		CCEF5E0224CEA0B80044B196 /* ConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEF5E0124CEA0B80044B196 /* ConsoleViewController.swift */; };
+		CCEF5E0B24CEC2450044B196 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CCEF5E0A24CEC2450044B196 /* SwiftTerm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,7 @@
 		CC69034924CE88B700273851 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC69034A24CE88B700273851 /* SimpleVM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleVM.entitlements; sourceTree = "<group>"; };
 		CC69035024CE88CA00273851 /* VirtualMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualMachineViewModel.swift; sourceTree = "<group>"; };
+		CCEF5E0124CEA0B80044B196 /* ConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCEF5E0B24CEC2450044B196 /* SwiftTerm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +61,7 @@
 			children = (
 				CC69034024CE88B500273851 /* SimpleVMApp.swift */,
 				CC69034224CE88B500273851 /* ContentView.swift */,
+				CCEF5E0124CEA0B80044B196 /* ConsoleViewController.swift */,
 				CC69035024CE88CA00273851 /* VirtualMachineViewModel.swift */,
 				CC69034424CE88B700273851 /* Assets.xcassets */,
 				CC69034924CE88B700273851 /* Info.plist */,
@@ -90,6 +95,9 @@
 			dependencies = (
 			);
 			name = SimpleVM;
+			packageProductDependencies = (
+				CCEF5E0A24CEC2450044B196 /* SwiftTerm */,
+			);
 			productName = SimpleVM;
 			productReference = CC69033D24CE88B500273851 /* SimpleVM.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +125,9 @@
 				Base,
 			);
 			mainGroup = CC69033424CE88B500273851;
+			packageReferences = (
+				CCEF5E0924CEC2450044B196 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+			);
 			productRefGroup = CC69033E24CE88B500273851 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCEF5E0224CEA0B80044B196 /* ConsoleViewController.swift in Sources */,
 				CC69034324CE88B500273851 /* ContentView.swift in Sources */,
 				CC69034124CE88B500273851 /* SimpleVMApp.swift in Sources */,
 				CC69035124CE88CA00273851 /* VirtualMachineViewModel.swift in Sources */,
@@ -335,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CCEF5E0924CEC2450044B196 /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCEF5E0A24CEC2450044B196 /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCEF5E0924CEC2450044B196 /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC69033524CE88B500273851 /* Project object */;
 }
