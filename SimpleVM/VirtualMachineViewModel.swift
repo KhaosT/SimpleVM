@@ -76,7 +76,7 @@ class VirtualMachineViewModel: NSObject, ObservableObject, VZVirtualMachineDeleg
         let bootloader = VZLinuxBootLoader(kernelURL: kernelURL)
         bootloader.initialRamdiskURL = initialRamdiskURL
         
-        let serial = VZVirtioConsoleDeviceConfiguration()
+        let serial = VZVirtioConsoleDeviceSerialPortConfiguration()
         
         serial.attachment = VZFileHandleSerialPortAttachment(
             fileHandleForReading: writePipe.fileHandleForReading,
