@@ -75,6 +75,7 @@ class VirtualMachineViewModel: NSObject, ObservableObject, VZVirtualMachineDeleg
         
         let bootloader = VZLinuxBootLoader(kernelURL: kernelURL)
         bootloader.initialRamdiskURL = initialRamdiskURL
+        bootloader.commandLine = "console=hvc0"
         
         let serial = VZVirtioConsoleDeviceSerialPortConfiguration()
         
